@@ -70,13 +70,43 @@ class DateTimeExtension extends AbstractExtension
     public function getFilters(): array
     {
         return [
-            new TwigFilter('ez_short_datetime', function ($date, $timezone = null) { return $this->format($this->shortDateTimeFormatter, $date, $timezone); }),
-            new TwigFilter('ez_short_date', function ($date, $timezone = null) { return $this->format($this->shortDateFormatter, $date, $timezone); }),
-            new TwigFilter('ez_short_time', function ($date, $timezone = null) { return $this->format($this->shortTimeFormatter, $date, $timezone); }),
-            new TwigFilter('ez_full_datetime', function ($date, $timezone = null) { return $this->format($this->fullDateTimeFormatter, $date, $timezone); }),
-            new TwigFilter('ez_full_date', function ($date, $timezone = null) { return $this->format($this->fullDateFormatter, $date, $timezone); }),
-            new TwigFilter('ez_full_time', function ($date, $timezone = null) { return $this->format($this->fullTimeFormatter, $date, $timezone); }),
+            new TwigFilter('ez_short_datetime', [$this, 'formatShortDateTime']),
+            new TwigFilter('ez_short_date', [$this, 'formatShortDate']),
+            new TwigFilter('ez_short_time', [$this, 'formatShortTime']),
+            new TwigFilter('ez_full_datetime', [$this, 'formatFullDateTime']),
+            new TwigFilter('ez_full_date', [$this, 'formatFullDate']),
+            new TwigFilter('ez_full_time', [$this, 'formatFullTime']),
         ];
+    }
+
+    public function formatShortDateTime($date, $timezone = null)
+    {
+        return $this->format($this->shortDateTimeFormatter, $date, $timezone);
+    }
+
+    public function formatShortDate($date, $timezone = null)
+    {
+        return $this->format($this->shortDateFormatter, $date, $timezone);
+    }
+
+    public function formatShortTime($date, $timezone = null)
+    {
+        return $this->format($this->shortTimeFormatter, $date, $timezone);
+    }
+
+    public function formatFullDateTime($date, $timezone = null)
+    {
+        return $this->format($this->fullDateTimeFormatter, $date, $timezone);
+    }
+
+    public function formatFullDate($date, $timezone = null)
+    {
+        return $this->format($this->fullDateFormatter, $date, $timezone);
+    }
+
+    public function formatFullTime($date, $timezone = null)
+    {
+        return $this->format($this->fullTimeFormatter, $date, $timezone);
     }
 
     /**
