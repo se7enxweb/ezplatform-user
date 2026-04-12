@@ -59,7 +59,7 @@
         "test": "phpunit -c phpunit.xml"
     },
     "replace": {
-        "ezsystems/ezplatform-user": "self.version"
+        "ezsystems/ezplatform-user": "*"
     },
     "extra": {
         "branch-alias": {
